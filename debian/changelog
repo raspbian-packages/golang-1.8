@@ -1,9 +1,17 @@
-golang-1.8 (1.8.3-1+rpi1) buster-staging; urgency=medium
+golang-1.8 (1.8.3-2+rpi1) buster-staging; urgency=medium
 
+  [changes brought forward from 1.8.3-1+rpi1 by Peter Michael Green <plugwash@raspbian.org> at Tue, 27 Jun 2017 23:56:40 +0000]
   * Build with GOARM=6
   * Disable testsuite.
 
- -- Peter Michael Green <plugwash@raspbian.org>  Tue, 27 Jun 2017 23:56:40 +0000
+ -- Raspbian forward porter <root@raspbian.org>  Thu, 11 Jan 2018 19:00:33 +0000
+
+golang-1.8 (1.8.3-2) unstable; urgency=medium
+
+  * Add 0001-Fix-FTBFS-with-Perl-526.patch
+  * Rename old style config section [git-dch] to [dch]
+
+ -- Michael Stapelberg <stapelberg@debian.org>  Mon, 24 Jul 2017 22:51:01 +0200
 
 golang-1.8 (1.8.3-1) unstable; urgency=medium
 
