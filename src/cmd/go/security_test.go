@@ -67,6 +67,7 @@ var badCompilerFlags = [][]string{
 	{"-O@1"},
 	{"-Wa,-foo"},
 	{"-W@foo"},
+	{"-Wp,-DX,-D@X"},
 	{"-g@gdb"},
 	{"-g-gdb"},
 	{"-march=@dawn"},
