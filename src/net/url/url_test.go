@@ -1631,6 +1631,12 @@ func TestURLPort(t *testing.T) {
 			t.Errorf("Port for Host %q = %q; want %q", tt.host, got, tt.want)
 		}
 	}
+
+	// But don't reject non-ASCII CTLs, at least for now:
+	if _, err := Parse("http://foo.com/ctl\x80"); err != nil {
+		t.Errorf("error parsing URL with non-ASCII control byte: %v", err)
+	}
+
 }
 
 var _ encodingPkg.BinaryMarshaler = (*URL)(nil)
@@ -1681,5 +1687,20 @@ func TestGob(t *testing.T) {
 	}
 	if u1.String() != u.String() {
 		t.Errorf("json decoded to: %s\nwant: %s\n", u1, u)
+	}
+}
+
+func TestRejectControlCharacters(t *testing.T) {
+	tests := []string{
+		"http://foo.com/?foo\nbar",
+		"http\r://foo.com/",
+		"http://foo\x7f.com/",
+	}
+	for _, s := range tests {
+		_, err := Parse(s)
+		const wantSub = "net/url: invalid control character in URL"
+		if got := fmt.Sprint(err); !strings.Contains(got, wantSub) {
+			t.Errorf("Parse(%q) error = %q; want substring %q", s, got, wantSub)
+		}
 	}
 }
