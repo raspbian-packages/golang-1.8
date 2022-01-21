@@ -38,7 +38,7 @@ import (
 var re = regexp.MustCompile
 
 var validCompilerFlags = []*regexp.Regexp{
-	re(`-D([A-Za-z_].*)`),
+        re(`-D([A-Za-z_][A-Za-z0-9_]*)(=[^@\-]*)?`),
 	re(`-I([^@\-].*)`),
 	re(`-O`),
 	re(`-O([^@\-].*)`),
