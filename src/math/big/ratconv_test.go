@@ -54,6 +54,7 @@ var setStringTests = []StringTest{
 	{in: "4/3/"},
 	{in: "4/3."},
 	{in: "4/"},
+	{in: "13e-9223372036854775808"}, // CVE-2022-23772
 }
 
 // These are not supported by fmt.Fscanf.
